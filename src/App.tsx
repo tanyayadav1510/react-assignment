@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import PersistentDrawerLeft from './components/Navbar/Navbar';
 import { Profile } from './components/Profile/Profile';
-import { Products } from './components/Products/Products';
+import Products from './components/Products/Products';
 
 
 const queryClient = new QueryClient();

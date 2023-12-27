@@ -3,6 +3,7 @@ import { Dialog, DialogContent, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
 import {styles} from './productItem.styles';
+import {Typography} from '@mui/material';
 
 type ModalProps = {
   open: boolean;
@@ -11,14 +12,16 @@ type ModalProps = {
   totalItems: number | undefined;
   imageSrc: string | undefined;
   title: string | undefined;
+  description: string | undefined;
   moveNext: (currId: number | undefined) => void;
   movePrev: (currId: number | undefined) => void;
 };
 
-const ImageWithTitle: React.FC<{ imageSrc: string; title: string }> = ({ imageSrc, title }) => (
+const ImageWithTitle: React.FC<{ imageSrc: string; title: string; description: string|undefined }> = ({ imageSrc, title, description }) => (
   <div>
     <img src={imageSrc} alt={title || 'Image'} style={styles.image} />
-    <div style={styles.title}>{title}</div>
+    <Typography variant="h5" style={styles.title}>{title}</Typography>
+    <Typography variant="subtitle2" style={styles.title}>{description}</Typography>
   </div>
 );
 
@@ -29,6 +32,7 @@ const Modal: React.FC<ModalProps> = ({
   totalItems,
   imageSrc,
   title,
+  description,
   moveNext,
   movePrev,
 }) => {
@@ -42,7 +46,7 @@ const Modal: React.FC<ModalProps> = ({
           <IconButton color="inherit" disabled={modalId === 1} onClick={() => movePrev(modalId)}>
             <ChevronLeft />
           </IconButton>
-          {imageSrc && title && <ImageWithTitle imageSrc={imageSrc} title={title} />}
+          {imageSrc && title && <ImageWithTitle imageSrc={imageSrc} title={title} description={description}/>}
           <IconButton color="inherit" disabled={modalId === totalItems} onClick={() => moveNext(modalId)}>
             <ChevronRight />
           </IconButton>
